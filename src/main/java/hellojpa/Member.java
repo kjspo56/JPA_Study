@@ -1,29 +1,34 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.management.relation.Role;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name = "MBR")
 public class Member {
 
     @Id //PK가 뭔지 Java에서 알려주는 용도
     private Long id;
-    private String name;
 
+    @Column(name = "name", insertable = true, updatable = true) //insert나 update를 할때 이 컬럼을 반영할것인지 아닌지 결정
+    private String username;
 
-    public Long getId() {
-        return id;
-    }
+    private Integer age;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
-    public String getName() {
-        return name;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
 
-    public void setName(String name) {
-        this.name = name;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+
+    @Lob
+    private String description;
+
+    public Member(){
+
     }
 }
