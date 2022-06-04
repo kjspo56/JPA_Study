@@ -5,10 +5,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@SequenceGenerator(name = "member_seq_generator", sequenceName = "member_seq")
 @Table(name = "MBR")
 public class Member {
 
     @Id //PK가 뭔지 Java에서 알려주는 용도
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "name", insertable = true, updatable = true) //insert나 update를 할때 이 컬럼을 반영할것인지 아닌지 결정
