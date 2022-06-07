@@ -5,32 +5,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@SequenceGenerator(name = "member_seq_generator", sequenceName = "member_seq")
-@Table(name = "MBR")
 public class Member {
 
-    @Id //PK가 뭔지 Java에서 알려주는 용도
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", insertable = true, updatable = true) //insert나 update를 할때 이 컬럼을 반영할것인지 아닌지 결정
+    @Column(name = "USERNAME")
     private String username;
 
-    private Integer age;
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createDate;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date lastModifiedDate;
-
-    @Lob
-    private String description;
-
-    public Member(){
-
-    }
 }
